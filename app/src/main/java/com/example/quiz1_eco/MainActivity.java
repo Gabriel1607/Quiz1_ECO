@@ -2,6 +2,8 @@ package com.example.quiz1_eco;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,5 +19,18 @@ private TextView studentList;
         regButton = findViewById(R.id.regButton);
         titleMain = findViewById(R.id.titleMain);
         studentList = findViewById(R.id.studentList);
+regButton.setOnClickListener(
+        (v)->{
+            Intent i = new Intent(this,RegisterActivity.class);
+            startActivity(i);
+
+        }
+);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+String usuarios = getSharedPreferences("data",MODE_PRIVATE).getString("User&ScoreList","Aún no hay datos almacenados..."+"\n"+"¿Por qué no intentas darle al botón de Registrar? ");
+studentList.setText(usuarios);
     }
 }
